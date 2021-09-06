@@ -2,7 +2,7 @@ import React from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { Link } from 'react-router-dom'
 
-class Home extends React.Component{
+class Detail extends React.Component{
     state = {
         skills: [
             {
@@ -29,43 +29,47 @@ class Home extends React.Component{
                 description: "Svelte description",
                 image: require("../images/sveltejs.png").default
             }
-        ]
+        ],
+        data:""
+    }
+
+    componentDidMount(){
+        const id = this.props.match.params.id
+        const data = this.state.skills.find(item => item.id === parseInt(id) )
+        this.setState({ data})
     }
     render(){
-        const { skills } = this.state
+        const { data } = this.state
         return(
-            <MainLayout>                
-                <h1 style={{ paddingLeft: "6rem"}}>Home Page</h1>
-                    <div style={container}>
-                        { skills.map(item =>
-                            <div key={item.id} style={card}>
-                                <Link to={`/detail/${item.id}`}>
-                                    <img src={item.image} alt={item.name} style={img}/>
-                                    <h3>{item.name}</h3>
-                                </Link>
-                            </div>   
-                        )}
-                    </div>               
+            <MainLayout>
+                <div style={container}>
+                    <h1>{data.name}</h1>
+                        <div style={box}>
+                            <img src={data.image} alt={data.image} style={img}/>
+                            <div>
+                                <p>{data.description}</p>
+                                <Link to="/">Back To Home</Link>                        
+                            </div>
+                        </div>
+                </div>
             </MainLayout>
         )
+        
     }
 }
 
-export default Home
+export default Detail
 
-const container = {
-    display: "flex",
-    padding: "0 6rem",
-    justifyContent: "space-between"
-}
-
-const card = {
-    width: "20%",
-    height: "15rem"
+const container = {    
+    padding: "0 6rem"    
 }
 
 const img = {
-    width: "100%",
-    height: "100%"
+    width: "15rem",
+    height: "20rem",
+    marginRight: "2rem"
 }
 
+const box = {
+    display: "flex"
+}

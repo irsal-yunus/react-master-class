@@ -1,20 +1,17 @@
 import React from 'react'
 import MainLayout from '../layouts/MainLayout'
 
-const Contact = () => {
+const NotFound = () => {
     return(
         <MainLayout>            
             <div style={container}>
-                <h1>Contact Page</h1>
-                <p>
-                
-                </p>
+                <h1>404 Not Found Page</h1>                
             </div>            
         </MainLayout>
     )
 }
 
-export default Contact
+export default NotFound
 
 const container = {
     padding: "0 6rem"
