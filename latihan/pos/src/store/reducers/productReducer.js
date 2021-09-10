@@ -52,7 +52,12 @@ const productReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     carts: decCarts
-                }        
+                }
+            case "REMOVE":
+                return {
+                    ...state,
+                    carts: state.carts.filter(item => item.id !== payload)
+                }
     }
 }
 
