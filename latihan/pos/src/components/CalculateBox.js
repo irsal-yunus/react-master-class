@@ -28,6 +28,10 @@ const Pay = styled.div`
         &:focus{
             outline: none;
         }
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button{
+            -webkit-appearance: none;
+        }
     }
 `
 const Change = styled.div`

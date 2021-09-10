@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
+import { useDispatch } from "react-redux"
+import { addCart } from "../store/actions/product"
 
 const Card = styled.div`
     width: 17%;
@@ -14,9 +16,15 @@ const NamePrice = styled.div`
     display: flex;
     justify-content: space-between;
 `
+
 const ProductCard = ({ item }) => {
+    const dispatch = useDispatch()
+    const addToCart = id => {
+        dispatch(addCart(id))   
+        // console.log(id)     
+    }
     return(
-        <Card>
+        <Card onClick={() => addToCart(item.id)}>
             <CardImg src={item.image} alt={item.name} />
                 <NamePrice>
                     <p>{item.name}</p>

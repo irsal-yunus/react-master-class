@@ -36,6 +36,8 @@ const CartContainer = styled.div`
 
 const App = () => {
   const products = useSelector(state => state.product.products)
+  const carts = useSelector(state => state.product.carts)
+  // console.log(carts)
   return(
     <ThemeProvider theme={theme}>
       <Header />
@@ -49,7 +51,10 @@ const App = () => {
               )}            
           </ProductContainer>
           <CartContainer>
-            <CartItem />
+            <p>{carts ? `${carts.length} item in cart` : `0 item in cart`}</p>
+            {carts.map(item =>
+                <CartItem key={item.id} item={item} />
+              )}              
             <CalculateBox />
           </CartContainer>
         </Container>
