@@ -1,16 +1,19 @@
 import React from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"
+// import { resetServerContext } from "react-beautiful-dnd"
 import BoardTitle from "./BoardTitle"
 import Card from "./Card"
 import Button from "./Button"
 import "../sass/Board.scss"
 import menu from "../assets/menu.svg"
 
-const Board = ({ data, index }) => {     
+
+const Board = ({ data, index }) => {   
+    // resetServerContext();  
     return(
         <Draggable draggableId={data.id} index={index}>
             {(provided) => (
-                <div ref={provided.innerRef} {...provided.draggableProps} className="board">            
+                <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="board">            
                     <div className="board__title">
                         <BoardTitle id={data.id} title={data.title} />
                         <div className="menu">
@@ -33,5 +36,6 @@ const Board = ({ data, index }) => {
         </Draggable>
     )
 }
+
 
 export default Board

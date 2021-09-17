@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
+// import { resetServerContext } from "react-beautiful-dnd"
 import Header from "./components/Header"
 import Board from "./components/Board";
 import Button from "./components/Button";
@@ -9,6 +10,7 @@ import "./App.scss"
 
 const App = ()=> {
   // const val = useContext(DataContext)
+  // resetServerContext();
   const { store , updateDrag } = useContext(DataContext)
   const onDragEnd = result => {
     const { destination , source , draggableId, type } = result
@@ -52,11 +54,11 @@ const App = ()=> {
       updateDrag(newStore)
     }
   }
-  return (    
+  return ( 
     <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="app" type="list">
+      <Droppable droppableId="app" type="list" direction="horizontal">
         {(provided) => (
-        <div ref={provided.innerRef} {...provided.draggableProps}>     
+        <div ref={provided.innerRef} {...provided.droppableProps} {...provided.dragHandleProps} >     
           <Header />
           <div className="container">
             {store.listIds.map((id, index) => {
@@ -70,7 +72,9 @@ const App = ()=> {
         )}
       </Droppable>
     </DragDropContext>
+    
   );
 }
+
 
 export default App;

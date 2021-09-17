@@ -25,7 +25,7 @@ const initialState = {
         },
         "list-2": {
             id: "list-2",
-            title: "on progress",
+            title: "On Progress",
             cards: []
         }
     },
